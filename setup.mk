@@ -29,6 +29,15 @@ src_dirs+=$(src_dir) $(core_dir) $(platform_dir)
 SRC_DIRS+=$(src_dirs)
 INC_DIRS+=$(addsuffix /inc, $(src_dirs))
 
+TESTF_TESTS_DIR:=$(cur_dir)/tests
+TESTF_REPO_DIR:=$(cur_dir)/bao-tests
+
+include $(TESTF_REPO_DIR)/src/bao-test.mk
+SRC_DIRS+=$(TESTF_SRC_DIR) $(TESTF_TESTS_DIR)
+C_SRC+=$(TESTF_SRCS)
+INC_DIRS+=$(TESTF_INC_DIR)
+CFLAGS+=$(TESTF_FLAGS)
+
 ifeq ($(wildcard $(platform_dir)),)
 $(error unsupported platform $(PLATFORM))
 endif
